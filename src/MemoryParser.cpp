@@ -10,9 +10,12 @@ MemoryParser::MemoryParser() {
     totalMemory();
 }
 
-float MemoryParser::display() {
-    Memory memory = storeData();
-    std::cout << "free memory = " << memory.first << " use memory = " << memory.second;
+Memory MemoryParser::usage() {
+    return storeData();
+}
+
+float MemoryParser::total() {
+    return m_totalMemory;
 }
 
 Memory MemoryParser::storeData() {

@@ -7,9 +7,9 @@
 int main() {
     CpuParser cpu;
     MemoryParser memory;
-    memory.display();
-    // while(1) {
-    //     std::cout << "CPU: " << cpu.display() << "%" << std::endl;
-    //     sleep(1);
-    // }
+    while(1) {
+        std::cout << "CPU: " << cpu.usage() << "%" << std::endl;
+        std::cout << memory.usage().first << "Mb of " << memory.total() << "Mb" << std::endl; 
+        sleep(5);
+    }
 }

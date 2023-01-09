@@ -9,7 +9,7 @@
 class CpuParser final{
 public:
     CpuParser();
-    float display();
+    float usage();
 private:
     std::vector<size_t> storeData();
     bool getTime(size_t &, size_t &);

@@ -5,7 +5,7 @@ CpuParser::CpuParser() {
     m_oldTotalTime = 0;
 }
 
-float CpuParser::display() {
+float CpuParser::usage() {
     float utilization = 0;
     size_t idleTime, totalTime;
     if(getTime(idleTime, totalTime)) {

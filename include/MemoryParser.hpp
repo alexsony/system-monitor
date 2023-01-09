@@ -12,7 +12,8 @@ using Memory = std::pair<float, float>;
 class MemoryParser final {
 public:
     MemoryParser();
-    float display();   
+    Memory usage(); 
+    float total();  
 private:
     Memory storeData();
     float m_totalMemory;
