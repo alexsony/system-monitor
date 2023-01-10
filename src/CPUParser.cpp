@@ -3,6 +3,20 @@
 CpuParser::CpuParser() {
     m_oldIdleTime = 0;
     m_oldTotalTime = 0;
+
+    std::invoke([&](){
+        std::ifstream procCpuinfo("/proc/cpuinfo");
+        std::string line, search{"model name"};
+
+        while(getline(procCpuinfo, line)) {
+            if (line.find(search, 0) != std::string::npos) break;
+        }
+        m_name = line.substr(line.find(":") + 2);
+    });
+}
+
+std::string CpuParser::name() {
+    return m_name;
 }
 
 float CpuParser::usage() {
@@ -27,9 +41,9 @@ bool CpuParser::getTime(size_t &t_idleTime, size_t &t_totalTime) {
 }
 
 std::vector<size_t> CpuParser::storeData() {
-    std::ifstream proc_stat("/proc/stat");
-    proc_stat.ignore(5, ' '); //ignore "cpu" prefix
+    std::ifstream procStat("/proc/stat");
+    procStat.ignore(5, ' '); //ignore "cpu" prefix
     std::vector<size_t> times;
-    for (size_t time; proc_stat >> time; times.push_back(time));
+    for (size_t time; procStat >> time; times.push_back(time));
     return times;
 }

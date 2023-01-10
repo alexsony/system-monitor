@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <functional>
 
 using Memory = std::pair<float, float>;
 
