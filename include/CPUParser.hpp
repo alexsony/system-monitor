@@ -14,10 +14,10 @@ public:
     float usage();
     std::string name();
 private:
-    std::vector<size_t> storeData();
-    bool getTime(size_t &, size_t &);
-    size_t m_oldIdleTime;
-    size_t m_oldTotalTime;
+    std::vector<int> storeData();
+    bool getTime(int &, int &);
+    int m_oldIdleTime;
+    int m_oldTotalTime;
     std::string m_name;
 };
 

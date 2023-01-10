@@ -21,7 +21,7 @@ std::string CpuParser::name() {
 
 float CpuParser::usage() {
     float utilization = 0;
-    size_t idleTime, totalTime;
+    int idleTime, totalTime;
     if(getTime(idleTime, totalTime)) {
         const float idleTimeDelta = idleTime - m_oldIdleTime;
         const float totalTimeDelta = totalTime - m_oldTotalTime;
@@ -32,18 +32,18 @@ float CpuParser::usage() {
     return utilization;
 }
 
-bool CpuParser::getTime(size_t &t_idleTime, size_t &t_totalTime) {
-    const std::vector<size_t> times = storeData();
+bool CpuParser::getTime(int &t_idleTime, int &t_totalTime) {
+    const std::vector<int> times = storeData();
     if (times.size() < 4) return false;
     t_idleTime = times[3];
     t_totalTime = std::accumulate(times.begin(), times.end(), 0);
     return true;
 }
 
-std::vector<size_t> CpuParser::storeData() {
+std::vector<int> CpuParser::storeData() {
     std::ifstream procStat("/proc/stat");
     procStat.ignore(5, ' '); //ignore "cpu" prefix
-    std::vector<size_t> times;
+    std::vector<int> times;
     for (size_t time; procStat >> time; times.push_back(time));
     return times;
 }
