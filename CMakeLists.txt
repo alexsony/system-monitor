@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
     src/CPUParser.cpp
-    src/MemoryParser.cpp)
+    src/MemoryParser.cpp
+    src/NetParser.cpp)
 
 include_directories(include)
 
